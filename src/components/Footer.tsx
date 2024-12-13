@@ -6,10 +6,10 @@ export default function Footer() {
           {/* Logo Column */}
           <div className="flex items-start">
             <img
-              src="src\assets\Asset 9@4x.png"
+              src="src\assets\Asset 9@4x.webp"
               alt="Little Lemon logo"
-              width={100}
-              height={100}
+              width={'100px'}
+              height={'168px'}
               className="rounded-lg"
             />
           </div>
