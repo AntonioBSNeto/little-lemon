@@ -36,7 +36,7 @@ export default function Chicago() {
               onClick={toggleImages}
             >
               <img
-                src="src\assets\restaurant.jpg"
+                src="src\assets\restaurant.webp"
                 alt="Little Lemon restaurant interior"
                 className="object-cover rounded-lg shadow-xl"
               />
@@ -50,7 +50,7 @@ export default function Chicago() {
               onClick={toggleImages}
             >
               <img
-                src="src\assets\restaurant chef B.jpg"
+                src="src\assets\restaurant chef B.webp"
                 alt="Little Lemon chefs at work"
                 className="object-cover rounded-lg shadow-xl"
               />

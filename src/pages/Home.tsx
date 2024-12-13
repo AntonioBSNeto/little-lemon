@@ -1,13 +1,7 @@
-import Footer from "../components/Footer"
-import { Header } from "../components/Header"
-import { Main } from "../components/Main"
+import { HomeMain } from "../components/HomeMain"
 
 export const Home = () => {
   return (
-    <>
-      <Header/>
-      <Main />
-      <Footer />
-    </>
+    <HomeMain />
   )
 }
