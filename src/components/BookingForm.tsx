@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { date, InferType, number, object, string } from "yup"
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 const reservationSchema = object().shape({
   date: date().required('Date is required').min(new Date(), 'Date must be in the future').typeError('Date is required'),
@@ -101,7 +101,7 @@ export default function BookingForm({ availableTimes, dispatch } : BookingFormPr
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Seating Preference</label>
+            <span className="block text-sm font-medium text-gray-700">Seating Preference</span>
             <div className="mt-2 space-x-4">
               <label className="inline-flex items-center">
                 <input
@@ -136,7 +136,7 @@ export default function BookingForm({ availableTimes, dispatch } : BookingFormPr
               type="submit"
               className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-[#F4CE14] hover:bg-[#E4BE04] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F4CE14]"
             >
-              Reserve a Table
+              Reserve a table
             </button>
           </div>
         </form>
