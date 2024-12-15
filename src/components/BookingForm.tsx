@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { date, InferType, number, object, string } from "yup"
 import { useEffect } from 'react'
+import { submitAPI } from '../service/serviceAPI'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const reservationSchema = object().shape({
   date: date().required('Date is required').min(new Date(), 'Date must be in the future').typeError('Date is required'),
@@ -24,16 +27,20 @@ export default function BookingForm({ availableTimes, dispatch } : BookingFormPr
     resolver: yupResolver(reservationSchema)
   })
 
+  const navigate = useNavigate()
+
   const onSubmit = (data: FormData) => {
-    console.log(data)
-    // Handle form submission
+    if (submitAPI(data)) {
+      toast.success('Success')
+      navigate('/my-bookings')
+    }
   }
 
   const selectedDate = watch('date')
 
   useEffect(() => {
     if (selectedDate) {
-      dispatch({ type: 'UPDATE_TIMES', payload: selectedDate })
+      dispatch({ type: 'UPDATE_TIMES', payload: new Date(selectedDate) })
     }
   }, [selectedDate, dispatch])
 

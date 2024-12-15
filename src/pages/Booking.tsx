@@ -1,5 +1,6 @@
 import { useReducer } from "react"
 import BookingForm from "../components/BookingForm"
+import { fetchAPI } from "../service/serviceAPI"
 
 interface AvailableTimesAction {
   type: 'UPDATE_TIMES'
@@ -8,22 +9,24 @@ interface AvailableTimesAction {
 
 type AvailableTimesState = string[]
 
-export function initializeTimes(): AvailableTimesState {
-  return ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00']
+export function initializeTimes(date: Date): AvailableTimesState {
+  const today = date.toISOString().split('T')[0];
+  return fetchAPI(today);
 }
 
 export function updateTimes(state: AvailableTimesState, action: AvailableTimesAction): AvailableTimesState {
   switch (action.type) {
     case 'UPDATE_TIMES':
       // For now, return the same times regardless of the date
-      return state
+      return initializeTimes(action.payload)
     default:
       return state
   }
 }
 
 export const Booking = () => {
-  const [availableTimes, dispatch] = useReducer(updateTimes, null, initializeTimes)
+  const [availableTimes, dispatch] = useReducer(updateTimes, new Date(), initializeTimes)
+
   return (
     <>
       <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
