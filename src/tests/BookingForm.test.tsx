@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react"
 import BookingForm from "../components/BookingForm"
 import "@testing-library/jest-dom";
 
+
 // Mock the dispatch function
 const mockDispatch = jest.fn()
 
