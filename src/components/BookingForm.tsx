@@ -48,18 +48,19 @@ export default function BookingForm({ availableTimes, dispatch } : BookingFormPr
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-[858px] mx-auto bg-white shadow-md rounded-lg overflow-hidden">
         <div className="bg-[#465B4B] text-white p-6 rounded-t-lg">
-          <h2 className="text-2xl font-bold">Reserve a Table</h2>
+          <h2 data-testid="form-title" className="text-2xl font-bold">Reserve a Table</h2>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-6">
+        <form data-testid="form-testid" onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-6">
           <div>
             <label htmlFor="date" className="block text-sm font-medium text-gray-700">Date</label>
             <input
+              aria-label='date-input'
               {...register('date')}
               type="date"
               id="date"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#F4CE14] focus:border-[#F4CE14]"
             />
-            {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date.message}</p>}
+            {errors.date && <p data-testid="form-error" className="mt-1 text-sm text-red-600">{errors.date.message}</p>}
           </div>
 
           <div>
@@ -71,10 +72,10 @@ export default function BookingForm({ availableTimes, dispatch } : BookingFormPr
             >
               <option value="">Select time</option>
               {availableTimes.map((hour) => (
-                <option key={hour} value={hour}>{hour}</option>
+                <option key={hour} value={hour} data-testid="select-option">{hour}</option>
               ))}
             </select>
-            {errors.time && <p className="mt-1 text-sm text-red-600">{errors.time.message}</p>}
+            {errors.time && <p data-testid="form-error" className="mt-1 text-sm text-red-600">{errors.time.message}</p>}
           </div>
 
           <div>
@@ -87,7 +88,7 @@ export default function BookingForm({ availableTimes, dispatch } : BookingFormPr
               max="10"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#F4CE14] focus:border-[#F4CE14]"
             />
-            {errors.guests && <p className="mt-1 text-sm text-red-600">{errors.guests.message}</p>}
+            {errors.guests && <p data-testid="form-error" className="mt-1 text-sm text-red-600">{errors.guests.message}</p>}
           </div>
 
           <div>
@@ -104,17 +105,18 @@ export default function BookingForm({ availableTimes, dispatch } : BookingFormPr
               <option value="business">Business Meal</option>
               <option value="other">Other</option>
             </select>
-            {errors.occasion && <p className="mt-1 text-sm text-red-600">{errors.occasion.message}</p>}
+            {errors.occasion && <p data-testid="form-error" className="mt-1 text-sm text-red-600">{errors.occasion.message}</p>}
           </div>
 
           <div>
             <span className="block text-sm font-medium text-gray-700">Seating Preference</span>
             <div className="mt-2 space-x-4">
-              <label className="inline-flex items-center">
+              <label htmlFor='indoor' className="inline-flex items-center">
                 <input
                   {...register('seating')}
                   type="radio"
                   value="indoor"
+                  id='indoor'
                   className="form-radio text-[#F4CE14] focus:ring-[#F4CE14]"
                 />
                 <span className="ml-2">Indoor</span>
@@ -129,7 +131,7 @@ export default function BookingForm({ availableTimes, dispatch } : BookingFormPr
                 <span className="ml-2">Outdoor</span>
               </label>
             </div>
-            {errors.seating && <p className="mt-1 text-sm text-red-600">{errors.seating.message}</p>}
+            {errors.seating && <p data-testid="form-error" className="mt-1 text-sm text-red-600">{errors.seating.message}</p>}
           </div>
 
           <div className="flex gap-4 pt-4">
